@@ -114,3 +114,7 @@
 .sw-theme-circles > ul.step-anchor > li.disabled > a, .sw-theme-circles > ul.step-anchor > li.disabled > a:hover {
     color: #eee !important;
 }
+/* Make hidden steps hidden */
+.sw-theme-circles > ul.step-anchor > li.hidden {
+    display: none;
+}

@@ -329,7 +329,9 @@
             this._showStep(si);
             return true;
         },
-        _showStep: function (idx) {
+        // Added triggerEvent option so we can call this method from within an event handler and not
+        // blow the stack on endless recursive calls.
+        _showStep: function (idx, triggerEvent) {
             // If step not found, skip
             if (!this.steps.eq(idx)) {
                 return false;
@@ -342,11 +344,16 @@
             if (this.steps.eq(idx).parent('li').hasClass('disabled') || this.steps.eq(idx).parent('li').hasClass('hidden')) {
                 return false;
             }
+            if (triggerEvent == null) {
+                triggerEvent = true;
+            }
             // Load step content
-            this._loadStepContent(idx);
+            this._loadStepContent(idx, triggerEvent);
             return true;
         },
-        _loadStepContent: function (idx) {
+        // Added triggerEvent option so we can call this method from within an event handler and not
+        // blow the stack on endless recursive calls.
+        _loadStepContent: function (idx, triggerEvent) {
             var mi = this;
             // Get current step elements
             var curTab = this.steps.eq(this.current_index);
@@ -359,8 +366,11 @@
                 stepDirection = this.current_index < idx ? "forward" : "backward";
             }
 
+            if (triggerEvent == null) {
+                triggerEvent = true;
+            }
             // Trigger "leaveStep" event
-            if (this.current_index !== null && this._triggerEvent("leaveStep", [curTab, this.current_index, stepDirection]) === false) {
+            if (triggerEvent && this.current_index !== null && this._triggerEvent("leaveStep", [curTab, this.current_index, stepDirection]) === false) {
                 return false;
             }
 
@@ -566,6 +576,13 @@
         },
         prev: function () {
             this._showPrevious();
+        },
+        // Added public showStep to control next step.
+        goTo: function(idx, triggerEvent) {
+            if (triggerEvent == null) {
+                triggerEvent = false;
+            }
+            this._showStep(idx, triggerEvent);
         },
         reset: function () {
             // Trigger "beginReset" event

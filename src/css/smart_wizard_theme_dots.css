@@ -142,6 +142,11 @@
     background: #eee;
 }
 
+/* Make hidden steps hidden */
+.sw-theme-dots > ul.step-anchor > li.hidden {
+    display: none;
+}
+
 /* Responsive CSS */
 @media screen and (max-width: 768px) {
     .sw-theme-dots > ul.step-anchor:before {

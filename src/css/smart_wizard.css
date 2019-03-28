@@ -153,6 +153,11 @@
     cursor: not-allowed;
 }
 
+/* Make hidden steps hidden */
+.sw-theme-default > ul.step-anchor > li.hidden {
+    display: none;
+}
+
 /* Responsive CSS */
 @media screen and (max-width: 768px) {
     .sw-theme-default > .nav-tabs > li {

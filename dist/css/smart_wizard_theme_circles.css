@@ -73,7 +73,6 @@
     text-align: center;
     padding: 25px 0;
     border-radius: 50%;
-    -webkit-box-shadow: inset 0px 0px 0px 3px #fff !important;
     box-shadow: inset 0px 0px 0px 3px #fff !important;
     text-decoration: none;
     outline-style: none;
@@ -131,4 +130,8 @@
 
 .sw-theme-circles > ul.step-anchor > li.disabled > a, .sw-theme-circles > ul.step-anchor > li.disabled > a:hover {
     color: #eee !important;
+}
+/* Make hidden steps hidden */
+.sw-theme-circles > ul.step-anchor > li.hidden {
+    display: none;
 }
